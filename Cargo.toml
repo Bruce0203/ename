@@ -6,7 +6,7 @@ author.workspace = true
 description.workspace = true
 repository.workspace = true 
 license.workspace = true
-keywords = ["packet"]
+keywords = ["enum", "variant", "name"]
 readme = "./README.md"
 include = [
     "**/*.rs",
