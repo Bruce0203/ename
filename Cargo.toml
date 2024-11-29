@@ -17,7 +17,7 @@ include = [
 members = ["impl"]
 
 [workspace.package]
-version = "0.1.1"
+version = "0.1.2"
 description = "get name of enum variant by enum value"
 edition = "2021"
 author = "Bruce0203 <brucefreedy@gmail.com>"
@@ -25,4 +25,4 @@ repository = "https://github.com/Bruce0203/ename"
 license = "MIT"
 
 [dependencies]
-ename_derive = { path = "./impl", version = "0.1.1" }
+ename_derive = { path = "./impl", version = "0.1.2" }
