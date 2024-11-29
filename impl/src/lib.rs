@@ -7,15 +7,12 @@ pub fn var_name(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
         .iter()
         .map(|variant| {
             let variant_name = &variant.ident;
-            let field_names = (0..variant.fields.len())
-                .map(|_| quote::quote! {_})
-                .collect::<Vec<_>>();
-            let field_names = if field_names.is_empty() {
-                None
-            } else {
-                Some(quote::quote! { (#(#field_names),*) })
+            let fields = match variant.fields {
+                syn::Fields::Named(_) => quote::quote! { {..} },
+                syn::Fields::Unnamed(_) => quote::quote! { (..) },
+                syn::Fields::Unit => quote::quote! {},
             };
-            quote::quote! { #enum_name::#variant_name #field_names => stringify!(#variant_name) }
+            quote::quote! { #enum_name::#variant_name #fields => stringify!(#variant_name) }
         })
         .collect::<Vec<_>>();
     let enum_generic_params_without_bounds = &item_enum
